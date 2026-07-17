@@ -4,7 +4,7 @@ function Text() {
   return (
     <div className="relative shrink-0" data-name="Text">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
-        <p className="[word-break:break-word] font-['HelveticaNowDisplayW01-Rg:Semi_Bold',sans-serif] leading-[24px] not-italic relative shrink-0 text-[#a855f7] text-[16px] whitespace-nowrap">✦</p>
+        <p className="[word-break:break-word] font-['DM_Sans',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[#a855f7] text-[16px] whitespace-nowrap">✦</p>
       </div>
     </div>
   );
@@ -16,7 +16,7 @@ function Container2() {
       <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none rounded-[20px]" />
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex gap-[6px] items-center px-[15px] py-[6px] relative size-full">
         <Text />
-        <p className="[word-break:break-word] font-['Helvetica_Neue:Regular',sans-serif] leading-[18px] not-italic relative shrink-0 text-[#1e293b] text-[12px] whitespace-nowrap">Copy Prompt</p>
+        <p className="[word-break:break-word] font-['DM_Sans',sans-serif] font-normal leading-[18px] not-italic relative shrink-0 text-[#1e293b] text-[12px] whitespace-nowrap">Copy Prompt</p>
       </div>
     </div>
   );
@@ -27,7 +27,7 @@ function Heading() {
     <div className="h-[50px] relative shrink-0 w-full" data-name="Heading 3">
       <div className="flex flex-col justify-center size-full">
         <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start justify-center px-[24px] py-[16px] relative size-full">
-          <p className="[word-break:break-word] font-['Helvetica_Neue:Medium',sans-serif] leading-[25.2px] not-italic relative shrink-0 text-[#1e293b] text-[16.8px] w-full">Mobile phone rotator</p>
+          <p className="[word-break:break-word] font-['DM_Sans',sans-serif] font-medium leading-[25.2px] not-italic relative shrink-0 text-[#1e293b] text-[16.8px] w-full">Mobile phone rotator</p>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@ function Text1() {
   return (
     <div className="relative shrink-0" data-name="Text">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
-        <p className="[word-break:break-word] font-['HelveticaNowDisplayW01-Rg:Semi_Bold',sans-serif] leading-[24px] not-italic relative shrink-0 text-[#a855f7] text-[16px] whitespace-nowrap">✦</p>
+        <p className="[word-break:break-word] font-['DM_Sans',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[#a855f7] text-[16px] whitespace-nowrap">✦</p>
       </div>
     </div>
   );
@@ -88,7 +88,7 @@ function Container4() {
       <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none rounded-[20px]" />
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex gap-[6px] items-center px-[15px] py-[6px] relative size-full">
         <Text1 />
-        <p className="[word-break:break-word] font-['Helvetica_Neue:Regular',sans-serif] leading-[18px] not-italic relative shrink-0 text-[#1e293b] text-[12px] whitespace-nowrap">Copy Prompt</p>
+        <p className="[word-break:break-word] font-['DM_Sans',sans-serif] font-normal leading-[18px] not-italic relative shrink-0 text-[#1e293b] text-[12px] whitespace-nowrap">Copy Prompt</p>
       </div>
     </div>
   );
@@ -99,7 +99,7 @@ function Heading1() {
     <div className="h-[50px] relative shrink-0 w-full" data-name="Heading 3">
       <div className="flex flex-col justify-center size-full">
         <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start justify-center px-[24px] py-[16px] relative size-full">
-          <p className="[word-break:break-word] font-['Helvetica_Neue:Medium',sans-serif] leading-[25.2px] not-italic relative shrink-0 text-[#1e293b] text-[16.8px] w-full">Vinyl record player</p>
+          <p className="[word-break:break-word] font-['DM_Sans',sans-serif] font-medium leading-[25.2px] not-italic relative shrink-0 text-[#1e293b] text-[16.8px] w-full">Vinyl record player</p>
         </div>
       </div>
     </div>
@@ -148,7 +148,7 @@ function Text2() {
   return (
     <div className="relative shrink-0" data-name="Text">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
-        <p className="[word-break:break-word] font-['HelveticaNowDisplayW01-Rg:Semi_Bold',sans-serif] leading-[24px] not-italic relative shrink-0 text-[#a855f7] text-[16px] whitespace-nowrap">✦</p>
+        <p className="[word-break:break-word] font-['DM_Sans',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[#a855f7] text-[16px] whitespace-nowrap">✦</p>
       </div>
     </div>
   );
@@ -160,7 +160,7 @@ function Container6() {
       <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none rounded-[20px]" />
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex gap-[6px] items-center px-[15px] py-[6px] relative size-full">
         <Text2 />
-        <p className="[word-break:break-word] font-['Helvetica_Neue:Regular',sans-serif] leading-[18px] not-italic relative shrink-0 text-[#1e293b] text-[12px] whitespace-nowrap">Copy Prompt</p>
+        <p className="[word-break:break-word] font-['DM_Sans',sans-serif] font-normal leading-[18px] not-italic relative shrink-0 text-[#1e293b] text-[12px] whitespace-nowrap">Copy Prompt</p>
       </div>
     </div>
   );
@@ -171,7 +171,7 @@ function Heading2() {
     <div className="h-[50px] relative shrink-0 w-full" data-name="Heading 3">
       <div className="flex flex-col justify-center size-full">
         <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start justify-center px-[24px] py-[16px] relative size-full">
-          <p className="[word-break:break-word] font-['Helvetica_Neue:Medium',sans-serif] leading-[25.2px] not-italic relative shrink-0 text-[#1e293b] text-[16.8px] w-full">Mobile phone rotator</p>
+          <p className="[word-break:break-word] font-['DM_Sans',sans-serif] font-medium leading-[25.2px] not-italic relative shrink-0 text-[#1e293b] text-[16.8px] w-full">Mobile phone rotator</p>
         </div>
       </div>
     </div>

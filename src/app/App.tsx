@@ -1,4 +1,24 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+
+// Inject Google Fonts into document head at runtime
+if (typeof document !== "undefined" && !document.getElementById("dm-sans-font")) {
+  const preconnect1 = document.createElement("link");
+  preconnect1.rel = "preconnect";
+  preconnect1.href = "https://fonts.googleapis.com";
+  document.head.appendChild(preconnect1);
+
+  const preconnect2 = document.createElement("link");
+  preconnect2.rel = "preconnect";
+  preconnect2.href = "https://fonts.gstatic.com";
+  preconnect2.crossOrigin = "anonymous";
+  document.head.appendChild(preconnect2);
+
+  const link = document.createElement("link");
+  link.id = "dm-sans-font";
+  link.rel = "stylesheet";
+  link.href = "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap";
+  document.head.appendChild(link);
+}
 import logomark from "@/imports/Logomark___Lavender_1.png";
 import phoneRotatorVideo from "@/imports/phone-rotator.mp4";
 import vinylRecordVideo from "@/imports/Vinyl_Record_Loop.mp4";
@@ -32,6 +52,31 @@ function useTypewriter(text: string, speed = 38, startDelay = 600) {
   }, [text, speed, startDelay]);
 
   return { displayed, done };
+}
+
+/* ─── Asterisk / spark SVGs (replace font dingbats to avoid Helvetica fallback) ─── */
+function AsteriskIcon({ size = 30, color = "#000" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} style={{ display: "block" }} xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1" stroke={color} strokeWidth="2.4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function SparkIcon({ size = 16, color = "#a855f7" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} style={{ display: "block" }} xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0 L14.5 9.5 L24 12 L14.5 14.5 L12 24 L9.5 14.5 L0 12 L9.5 9.5 Z" />
+    </svg>
+  );
+}
+
+function BulletIcon({ color = "currentColor" }: { color?: string }) {
+  return (
+    <svg width="4" height="4" viewBox="0 0 4 4" style={{ display: "block" }} xmlns="http://www.w3.org/2000/svg">
+      <circle cx="2" cy="2" r="2" fill={color} />
+    </svg>
+  );
 }
 
 /* ─── Copy icon SVG ─── */
@@ -137,7 +182,7 @@ function CopyPromptPill({ onClick }: { onClick: () => void }) {
         zIndex: 5,
       }}
     >
-      <span style={{ color: "#a855f7", fontSize: "16px", lineHeight: "24px", fontWeight: 600 }}>✦</span>
+      <SparkIcon size={14} color="#a855f7" />
       <span style={{ fontSize: "12px", color: "#1e293b", whiteSpace: "nowrap" }}>Copy Prompt</span>
     </div>
   );
@@ -485,19 +530,16 @@ export default function App() {
           >
             Rico (S) Lavender
           </span>
-          <span
-            style={{ letterSpacing: "-0.02em", fontFamily: "var(--font-heading)" }}
-            className="text-[25px] sm:text-[30px] text-black select-none leading-none"
-          >
-            ✳︎
+          <span className="text-black select-none flex items-center">
+            <AsteriskIcon size={26} color="#000" />
           </span>
         </div>
 
         <div className="hidden md:flex flex-row items-center gap-3 text-[17px] text-black">
           <a href="https://ai.ricolavender.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">RicoGPT</a>
-          <span className="opacity-40 select-none">•</span>
+          <span className="opacity-40 select-none flex items-center"><BulletIcon color="#000" /></span>
           <a href="https://rlmercantile.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">Shop</a>
-          <span className="opacity-40 select-none">•</span>
+          <span className="opacity-40 select-none flex items-center"><BulletIcon color="#000" /></span>
           <span>Labs</span>
         </div>
 
@@ -607,7 +649,7 @@ export default function App() {
                     <button
                       key={btn.label}
                       onClick={btn.action}
-                      className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 mx-[0.2em] mb-[0.4em] hover:bg-black hover:text-white transition-colors duration-200 whitespace-nowrap cursor-pointer"
+                      className="inline-flex items-center justify-center font-normal bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 mx-[0.2em] mb-[0.4em] hover:bg-black hover:text-white transition-colors duration-200 whitespace-nowrap cursor-pointer"
                       style={{ paddingTop: "0.3em", paddingBottom: "0.3em" }}
                     >
                       {btn.label}
@@ -618,7 +660,7 @@ export default function App() {
                       href={btn.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 mx-[0.2em] mb-[0.4em] hover:bg-black hover:text-white transition-colors duration-200 whitespace-nowrap"
+                      className="inline-flex items-center justify-center font-normal bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 mx-[0.2em] mb-[0.4em] hover:bg-black hover:text-white transition-colors duration-200 whitespace-nowrap"
                       style={{ paddingTop: "0.3em", paddingBottom: "0.3em" }}
                     >
                       {btn.label}
@@ -628,7 +670,7 @@ export default function App() {
 
                 <button
                   onClick={handleCopy}
-                  className="inline-flex items-center justify-center gap-2 sm:gap-3 text-white bg-transparent border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 mx-[0.2em] mb-[0.4em] hover:bg-white hover:text-black transition-colors duration-200 whitespace-nowrap cursor-pointer"
+                  className="inline-flex items-center justify-center font-normal gap-2 sm:gap-3 text-white bg-transparent border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 mx-[0.2em] mb-[0.4em] hover:bg-white hover:text-black transition-colors duration-200 whitespace-nowrap cursor-pointer"
                   style={{ paddingTop: "0.3em", paddingBottom: "0.3em" }}
                 >
                   <span>
