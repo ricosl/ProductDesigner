@@ -25,8 +25,9 @@ import vinylRecordVideo from "@/imports/Vinyl_Record_Loop.mp4";
 import glitchVideo from "@/imports/Glitch-video_Survellience.mp4";
 import svgPaths from "@/imports/Container/svg-tyjgly3q7u";
 import { Toaster, toast } from "sonner";
+import CaseStudiesImport from "@/imports/CaseStudies/index";
 
-type Page = "home" | "prompt-library" | "about";
+type Page = "home" | "prompt-library" | "about" | "case-studies";
 
 /* ─── Typewriter hook ─── */
 function useTypewriter(text: string, speed = 38, startDelay = 600) {
@@ -387,6 +388,12 @@ export default function App() {
   const targetTimeRef = useRef(0);
   const seekingRef = useRef(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   const [pillsVisible, setPillsVisible] = useState(false);
   const [copied, setCopied] = useState(false);
   const [page, setPage] = useState<Page>("home");
@@ -458,7 +465,7 @@ export default function App() {
   };
 
   const pillButtons = [
-    { label: "UX Case Studies", href: "https://case-studies.carrd.co/" },
+    { label: "UX Case Studies", action: () => navigateTo("case-studies") },
     { label: "My Design Book", href: "https://design.ricolavender.com" },
     { label: "My Prompt Library", action: () => navigateTo("prompt-library") },
     { label: "Get To Know Me", action: () => navigateTo("about") },
@@ -493,6 +500,7 @@ export default function App() {
           objectFit: "cover",
           objectPosition: "70% center",
           filter: (page === "prompt-library" || page === "about") ? "blur(24px) brightness(0.65)" : "none",
+          opacity: page === "case-studies" ? 0 : 1,
           transform: "scale(1.07)",
           transition: "filter 0.5s ease",
         }}
@@ -516,7 +524,7 @@ export default function App() {
 
       {/* Navbar */}
       <nav
-        style={{ zIndex: 10 }}
+        style={{ zIndex: 10, backgroundColor: scrolled ? "rgba(255,255,255,0.75)" : "transparent", backdropFilter: scrolled ? "blur(12px)" : "none", transition: "background-color 0.3s ease, backdrop-filter 0.3s ease" }}
         className="fixed top-0 left-0 right-0 flex flex-row justify-between items-center px-5 sm:px-8 py-4 sm:py-5"
       >
         <div
@@ -687,6 +695,39 @@ export default function App() {
         )}
 
         {page === "prompt-library" && <PromptLibraryPage onClose={() => navigateTo("home")} />}
+
+        {page === "case-studies" && (
+          <div style={{ position: "relative", zIndex: 1, minHeight: "100vh", background: "#f4f3f1", paddingTop: "72px" }}>
+            <div style={{ maxWidth: "1400px", margin: "0 auto", overflowX: "clip" }}>
+              <CaseStudiesImport />
+            </div>
+            <div style={{ padding: "24px 40px 40px" }}>
+              <button
+                onClick={() => navigateTo("home")}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#111",
+                  fontSize: "16px",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  opacity: 0.6,
+                  padding: 0,
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                Back to home
+              </button>
+            </div>
+          </div>
+        )}
 
         {page === "about" && (
           <div
