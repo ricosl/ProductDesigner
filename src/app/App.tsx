@@ -20,6 +20,17 @@ if (typeof document !== "undefined" && !document.getElementById("dm-sans-font"))
   document.head.appendChild(link);
 }
 import logomark from "@/imports/Logomark___Lavender_1.png";
+import faviconUrl from "@/imports/favicon.png";
+
+if (typeof document !== "undefined") {
+  const existing = document.querySelector("link[rel='icon']");
+  if (existing) existing.remove();
+  const favicon = document.createElement("link");
+  favicon.rel = "icon";
+  favicon.type = "image/png";
+  favicon.href = faviconUrl;
+  document.head.appendChild(favicon);
+}
 import phoneRotatorVideo from "@/imports/phone-rotator.mp4";
 import vinylRecordVideo from "@/imports/Vinyl_Record_Loop.mp4";
 import glitchVideo from "@/imports/Glitch-video_Survellience.mp4";
@@ -472,7 +483,7 @@ export default function App() {
   ];
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#A9A7A8" }}>
       <Toaster position="bottom-center" />
       <style>{`
         @keyframes blink {
@@ -514,8 +525,27 @@ export default function App() {
         }`}
       >
         <a
+          href="https://ai.ricolavender.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[28px] font-medium text-black hover:opacity-60 transition-opacity"
+          onClick={() => setMenuOpen(false)}
+        >
+          RicoGPT
+        </a>
+        <a
+          href="https://rlmercantile.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[28px] font-medium text-black hover:opacity-60 transition-opacity"
+          onClick={() => setMenuOpen(false)}
+        >
+          Shop
+        </a>
+        <span className="text-[28px] font-medium text-black opacity-40">Labs</span>
+        <a
           href="mailto:rico@ricolavender.com"
-          className="text-[32px] font-medium text-black underline underline-offset-2 hover:opacity-60 transition-opacity"
+          className="text-[28px] font-medium text-black underline underline-offset-2 hover:opacity-60 transition-opacity"
           onClick={() => setMenuOpen(false)}
         >
           Get in touch
