@@ -466,7 +466,7 @@ export default function App() {
   }, []);
 
   const typewriterText =
-    "I'm an interdisciplinary design leader who builds products and experiences people love. 15 years of design experince, the last few with AI in the mix. (Cause why not?)";
+    "I'm an interdisciplinary designer who leads, builds, and creates products and experiences with and without AI. I have over 10 years of experience as a generalist across several different industries. I'd love to work with you in a full-time or fractional capacity.";
   const { displayed, done } = useTypewriter(typewriterText);
 
   const handleCopy = () => {
@@ -653,7 +653,7 @@ export default function App() {
               >
                 Hey there, I&apos;m Rico Lavender,
                 <br />
-                Nice To Meet You
+                Nice To Meet You.
               </p>
 
               <p
@@ -796,7 +796,7 @@ export default function App() {
                 marginBottom: "40px",
               }}
             >
-              I&apos;ve always been someone who likes figuring things out, which is probably why product design has been such a good fit for me over the last 15 years. I enjoy taking messy ideas, asking a lot of questions, and turning them into products that feel simple and intuitive to use. I&apos;ve been fortunate enough to work with companies like Meta, American Express, and startups of all sizes, but I&apos;ve learned that great products come from great teams. I&apos;m easygoing, genuinely curious, and I try to leave my ego at the door. I enjoy collaborating, challenging ideas, and helping the people around me do their best work. At the end of the day, I want to build products people enjoy using and be the kind of teammate people enjoy working with.
+              I&apos;ve always been someone who likes figuring things out, which is probably why product design has been such a good fit for me over the last 15 years. I love untangling complex problems, asking a lot of questions, and helping teams turn ambitious ideas into products that feel simple and intuitive to use. I&apos;ve been fortunate enough to work with companies like Meta, American Express, and startups of all sizes, where I&apos;ve learned that the best products come from getting the right people aligned around a shared vision. I&apos;m easygoing, genuinely curious, and I try to leave my ego at the door. I enjoy collaborating, challenging ideas, and balancing strategy, craft, and business goals to build products people enjoy using and to be the kind of teammate people enjoy working with.
             </p>
 
             <button
