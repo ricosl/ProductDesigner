@@ -1,7 +1,7 @@
 
-  # Follow Prompt Instructions
+  # Rico Lavender Portfolio
 
-  This is a code bundle for Follow Prompt Instructions. The original project is available at https://www.figma.com/design/8MC6gtjWNXmPGuCs7lL4vM/Follow-Prompt-Instructions.
+  This is a code bundle for Rico Lavender Portfolio. The original project is available at https://www.figma.com/design/8MC6gtjWNXmPGuCs7lL4vM/Rico-Lavender-Portfolio.
 
   ## Running the code
 
