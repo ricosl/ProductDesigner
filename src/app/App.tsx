@@ -801,7 +801,7 @@ export default function App() {
                 marginBottom: "40px",
               }}
             >
-              I&apos;ve always been someone who likes figuring things out, which is probably why product design has been such a good fit for me over the last 15 years. I love untangling complex problems, asking a lot of questions, and helping teams turn ambitious ideas into products that feel simple and intuitive to use. I&apos;ve been fortunate enough to work with companies like Meta, American Express, and startups of all sizes, where I&apos;ve learned that the best products come from getting the right people aligned around a shared vision. I&apos;m easygoing, genuinely curious, and I try to leave my ego at the door. I enjoy collaborating, challenging ideas, and balancing strategy, craft, and business goals to build products people enjoy using and to be the kind of teammate people enjoy working with.
+              I&apos;ve always been someone who likes figuring things out, which is probably why product design has been such a good fit for me over the last 15 years. I love untangling complex problems, asking a lot of questions, and helping teams turn ambitious ideas into products that feel simple and intuitive to use. I&apos;ve been fortunate enough to work with companies like Meta, American Express, and startups of all sizes, where I&apos;ve learned that the best products come from getting the right people aligned around a shared vision. I&apos;m also a world traveler working with clients all over the world which helps me connect and adapt to different teams and working styles. Let&apos;s work together. If you have any other questions, just email me.
             </p>
 
             <button
