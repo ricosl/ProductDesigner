@@ -1,5 +1,23 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 
+// Google Analytics
+if (typeof document !== "undefined" && !document.getElementById("ga-script")) {
+  const gaScript = document.createElement("script");
+  gaScript.id = "ga-script";
+  gaScript.async = true;
+  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-S1SYQM7P70";
+  document.head.appendChild(gaScript);
+
+  const gaInit = document.createElement("script");
+  gaInit.innerHTML = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S1SYQM7P70');
+  `;
+  document.head.appendChild(gaInit);
+}
+
 // Inject Google Fonts into document head at runtime
 if (typeof document !== "undefined" && !document.getElementById("dm-sans-font")) {
   const preconnect1 = document.createElement("link");
@@ -38,7 +56,7 @@ import svgPaths from "@/imports/Container/svg-tyjgly3q7u";
 import { Toaster, toast } from "sonner";
 import CaseStudiesImport from "@/imports/CaseStudies/index";
 
-type Page = "home" | "prompt-library" | "about" | "case-studies";
+type Page = "home" | "prompt-library" | "about" | "case-studies" | "design-book";
 
 /* ─── Typewriter hook ─── */
 function useTypewriter(text: string, speed = 38, startDelay = 600) {
@@ -392,6 +410,203 @@ function PromptLibraryPage({ onClose }: { onClose: () => void }) {
   );
 }
 
+/* ─── Design Book Page ─── */
+const BASE = "https://design.ricolavender.com/assets/images";
+const V = "?v=ea913f6d";
+
+const graphicsItems = [
+  { title: "Logo Design", img: `${BASE}/gallery02/59ac9577.jpg${V}` },
+  { title: "Instagram Post", img: `${BASE}/gallery02/6b3f4ebc.jpg${V}`, href: "https://www.instagram.com/p/CwGLgZAv0MR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+  { title: "RL Instagram Post", img: `${BASE}/gallery02/93ef630f.jpg${V}` },
+  { title: "RL Instagram Post, Rings", img: `${BASE}/gallery02/b15ae363.jpg${V}` },
+  { title: "RL Instagram Post, Watch", img: `${BASE}/gallery02/5092cb63.jpg${V}` },
+  { title: "Pocket Pods Logo", img: `${BASE}/gallery02/aaa68dc4.jpg${V}` },
+  { title: "Box Design Instagram Post 1", img: `${BASE}/gallery02/697bc8a0.jpg${V}`, href: "https://www.instagram.com/p/CwQYlpqxf6m/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+  { title: "Box Design Labs Instagram Post 2", img: `${BASE}/gallery02/7df7d242.jpg${V}` },
+  { title: "Travel Social Media Post", img: `${BASE}/gallery02/a63d8c6b.jpg${V}` },
+  { title: "NBA Outside Stuff", img: `${BASE}/gallery02/d8794083.jpg${V}`, href: "https://nbaoutsidestuff.my.canva.site/" },
+];
+
+const webItems = [
+  { title: "Sibi Web", img: `${BASE}/gallery03/6dbe0cd0_original.jpg${V}` },
+  { title: "Vindico Website", img: `${BASE}/gallery03/0d89ef2a_original.png${V}` },
+  { title: "OX for Zoom", img: `${BASE}/gallery03/69be4e0b_original.jpg${V}` },
+  { title: "Facebook Marketplace Bulk Listings", img: `${BASE}/gallery03/520e6e42_original.png${V}` },
+  { title: "Feel Free Dashboard", img: `${BASE}/gallery03/268b3062_original.jpg${V}` },
+  { title: "Pocket Pods Logo", img: `${BASE}/gallery03/9e2f0543_original.jpg${V}` },
+  { title: "Game Center", img: `${BASE}/gallery03/45ddd904_original.jpg${V}` },
+  { title: "Electricity Rates", img: `${BASE}/gallery03/21009d00_original.jpg${V}` },
+  { title: "Verdant Advisors", img: `${BASE}/gallery03/4336b81f_original.jpg${V}`, href: "https://verdantadvisers.com" },
+];
+
+const mobileItems = [
+  { title: "Kineon", img: `${BASE}/gallery04/d45b0ed9_original.png${V}` },
+  { title: "Progress Residential", img: `${BASE}/gallery04/3d918c01_original.jpg${V}` },
+  { title: "R Lavender Mercantile Watch Landing Page", img: `${BASE}/gallery04/63c25ad2_original.jpg${V}`, href: "https://my-amaze.net/rl/" },
+  { title: "R Lavender Mercantile Gentleman Watch", img: `${BASE}/gallery04/69dbd108_original.jpg${V}` },
+  { title: "The Manner Barbershop (PWA)", img: `${BASE}/gallery04/fb775375_original.jpg${V}`, href: "https://xd.adobe.com/view/989786af-c417-4007-6055-1dc9a02445a7-eea6/" },
+  { title: "Ownzones", img: `${BASE}/gallery04/3d48b0eb.jpg${V}` },
+];
+
+type GalleryItem = { title: string; img: string; href?: string };
+
+function GalleryGrid({ items }: { items: GalleryItem[] }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      {items.map((item) => {
+        const inner = (
+          <div className="relative group overflow-hidden rounded-xl bg-[#1a1a1a] aspect-[4/3]">
+            <img
+              src={item.img}
+              alt={item.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-end p-4">
+              <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0 [transition:opacity_0.3s,transform_0.3s]">
+                {item.title}{item.href && " →"}
+              </span>
+            </div>
+          </div>
+        );
+        return item.href ? (
+          <a key={item.title} href={item.href} target="_blank" rel="noopener noreferrer" className="no-underline">
+            {inner}
+          </a>
+        ) : (
+          <div key={item.title}>{inner}</div>
+        );
+      })}
+    </div>
+  );
+}
+
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <p className="font-normal leading-normal text-[#737373] text-[11px] tracking-[1.5px] uppercase w-full mb-4" style={{ fontVariationSettings: '"opsz" 14' }}>
+      {label}
+    </p>
+  );
+}
+
+function DesignBookPage({ onClose }: { onClose: () => void }) {
+  const [activeSection, setActiveSection] = useState<"graphics" | "web" | "mobile" | "ai">("graphics");
+
+  const sections = [
+    { id: "graphics" as const, label: "Graphics" },
+    { id: "web" as const, label: "Web" },
+    { id: "mobile" as const, label: "Mobile" },
+    { id: "ai" as const, label: "AI" },
+  ];
+
+  return (
+    <div style={{ position: "relative", zIndex: 1, minHeight: "100vh", background: "#f4f3f1", paddingTop: "72px" }}>
+      <div style={{ maxWidth: "1400px", margin: "0 auto", overflowX: "clip" }}>
+        <div className="px-[24px] md:px-[40px] py-[24px] flex flex-col gap-[24px]">
+
+          {/* Header */}
+          <div className="flex flex-col gap-[8px]">
+            <div className="blur-[1.25px] font-normal leading-[0] text-[#111] text-[34px] w-full max-w-[580px]" style={{ fontVariationSettings: '"opsz" 14' }}>
+              <p className="leading-[1.3] mb-0">Graphics & Media</p>
+            </div>
+            <p className="font-normal leading-[1.4] text-[#111] text-[22px] w-full max-w-[629px]" style={{ fontVariationSettings: '"opsz" 14' }}>
+              A curated collection of graphic, web, mobile, and AI design work spanning 10+ years across industries.
+            </p>
+          </div>
+
+          {/* Section nav */}
+          <div className="flex flex-row gap-[0px] border-b border-[rgba(17,17,17,0.1)] w-full">
+            {sections.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => setActiveSection(s.id)}
+                className="font-normal text-[13px] tracking-[1.5px] uppercase px-[16px] py-[10px] border-b-2 transition-colors duration-200 cursor-pointer bg-transparent"
+                style={{
+                  borderBottomColor: activeSection === s.id ? "#111" : "transparent",
+                  color: activeSection === s.id ? "#111" : "#737373",
+                  marginBottom: "-1px",
+                }}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Content */}
+          {activeSection === "graphics" && (
+            <div className="flex flex-col gap-[16px]">
+              <SectionLabel label="Graphics" />
+              <GalleryGrid items={graphicsItems} />
+            </div>
+          )}
+
+          {activeSection === "web" && (
+            <div className="flex flex-col gap-[16px]">
+              <SectionLabel label="Web Design" />
+              <GalleryGrid items={webItems} />
+            </div>
+          )}
+
+          {activeSection === "mobile" && (
+            <div className="flex flex-col gap-[16px]">
+              <SectionLabel label="Mobile Design" />
+              <GalleryGrid items={mobileItems} />
+            </div>
+          )}
+
+          {activeSection === "ai" && (
+            <div className="flex flex-col gap-[24px] max-w-[629px]">
+              <SectionLabel label="AI" />
+              <div className="bg-white rounded-[20px] p-[32px] flex flex-col gap-[16px]">
+                <p className="font-medium text-[#111] text-[24px] leading-[1.2]" style={{ fontVariationSettings: '"opsz" 14' }}>Rico AI</p>
+                <p className="font-normal text-[#737373] text-[16px] leading-[1.6]" style={{ fontVariationSettings: '"opsz" 14' }}>
+                  I built my own GPT that will guide you through my portfolio of work, my interests, hobbies, and other things.
+                </p>
+                <a
+                  href="https://ai.ricolavender.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-normal text-[14px] text-[#111] underline underline-offset-4 hover:opacity-60 transition-opacity w-fit"
+                >
+                  Try RicoGPT →
+                </a>
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+
+      {/* Back to home */}
+      <div style={{ padding: "24px 40px 40px" }}>
+        <button
+          onClick={onClose}
+          style={{
+            background: "none",
+            border: "none",
+            color: "#111",
+            fontSize: "16px",
+            textDecoration: "underline",
+            textUnderlineOffset: "4px",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            opacity: 0.6,
+            padding: 0,
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+          Back to home
+        </button>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Main component ─── */
 export default function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -477,7 +692,7 @@ export default function App() {
 
   const pillButtons = [
     { label: "UX Case Studies", action: () => navigateTo("case-studies") },
-    { label: "My Design Book", href: "https://design.ricolavender.com" },
+    { label: "Graphics & Media", action: () => navigateTo("design-book") },
     { label: "My Prompt Library", action: () => navigateTo("prompt-library") },
     { label: "Get To Know Me", action: () => navigateTo("about") },
   ];
@@ -511,7 +726,7 @@ export default function App() {
           objectFit: "cover",
           objectPosition: "70% center",
           filter: (page === "prompt-library" || page === "about") ? "blur(24px) brightness(0.65)" : "none",
-          opacity: page === "case-studies" ? 0 : 1,
+          opacity: (page === "case-studies" || page === "design-book") ? 0 : 1,
           transform: "scale(1.07)",
           transition: "filter 0.5s ease",
         }}
@@ -615,7 +830,7 @@ export default function App() {
       >
         <span className="text-black pointer-events-none select-none">©Rico Lavender 2026. All Rights Reserved.</span>
         <div className="flex items-center gap-3 pointer-events-auto">
-          <a href="https://www.linkedin.com/in/ricol/" target="_blank" rel="noopener noreferrer" className="text-black hover:opacity-60 transition-opacity">
+          <a href="https://linkedin.com/in/ricol" target="_blank" rel="noopener noreferrer" className="text-black hover:opacity-60 transition-opacity">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
@@ -628,6 +843,11 @@ export default function App() {
           <a href="https://github.com/ricosl" target="_blank" rel="noopener noreferrer" className="text-black hover:opacity-60 transition-opacity">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://www.behance.net/sebastianism" target="_blank" rel="noopener noreferrer" className="text-black hover:opacity-60 transition-opacity">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029H23.726zm-7.686-3h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
             </svg>
           </a>
         </div>
@@ -730,6 +950,8 @@ export default function App() {
         )}
 
         {page === "prompt-library" && <PromptLibraryPage onClose={() => navigateTo("home")} />}
+
+        {page === "design-book" && <DesignBookPage onClose={() => navigateTo("home")} />}
 
         {page === "case-studies" && (
           <div style={{ position: "relative", zIndex: 1, minHeight: "100vh", background: "#f4f3f1", paddingTop: "72px" }}>
