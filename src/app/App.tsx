@@ -490,13 +490,13 @@ function SectionLabel({ label }: { label: string }) {
 }
 
 function DesignBookPage({ onClose }: { onClose: () => void }) {
-  const [activeSection, setActiveSection] = useState<"graphics" | "web" | "mobile" | "ai">("graphics");
+  const [activeSection, setActiveSection] = useState<"graphics" | "web" | "mobile" | "video">("graphics");
 
   const sections = [
     { id: "graphics" as const, label: "Graphics" },
     { id: "web" as const, label: "Web" },
     { id: "mobile" as const, label: "Mobile" },
-    { id: "ai" as const, label: "AI" },
+    { id: "video" as const, label: "Video" },
   ];
 
   return (
@@ -554,25 +554,26 @@ function DesignBookPage({ onClose }: { onClose: () => void }) {
             </div>
           )}
 
-          {activeSection === "ai" && (
+          {activeSection === "video" && (
             <div className="flex flex-col gap-[24px] max-w-[629px]">
-              <SectionLabel label="AI" />
+              <SectionLabel label="Video" />
               <div className="bg-white rounded-[20px] p-[32px] flex flex-col gap-[16px]">
-                <p className="font-medium text-[#111] text-[24px] leading-[1.2]" style={{ fontVariationSettings: '"opsz" 14' }}>Rico AI</p>
+                <p className="font-medium text-[#111] text-[24px] leading-[1.2]" style={{ fontVariationSettings: '"opsz" 14' }}>Coming Soon</p>
                 <p className="font-normal text-[#737373] text-[16px] leading-[1.6]" style={{ fontVariationSettings: '"opsz" 14' }}>
-                  I built my own GPT that will guide you through my portfolio of work, my interests, hobbies, and other things.
+                  Video work is being compiled and will be added here soon. In the meantime, check out some motion samples on my Instagram and Dribbble profiles.
                 </p>
-                <a
-                  href="https://ai.ricolavender.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-normal text-[14px] text-[#111] underline underline-offset-4 hover:opacity-60 transition-opacity w-fit"
-                >
-                  Try RicoGPT →
-                </a>
+                <div className="flex flex-col gap-[8px]">
+                  <a href="https://instagram.com/rlmercantile" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-normal text-[14px] text-[#111] underline underline-offset-4 hover:opacity-60 transition-opacity w-fit">
+                    Instagram →
+                  </a>
+                  <a href="https://dribbble.com/ricolavender" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-normal text-[14px] text-[#111] underline underline-offset-4 hover:opacity-60 transition-opacity w-fit">
+                    Dribbble →
+                  </a>
+                </div>
               </div>
             </div>
           )}
+
 
         </div>
       </div>
@@ -825,7 +826,7 @@ export default function App() {
 
       {/* Footer */}
       <footer
-        style={{ zIndex: 1, fontSize: "12px" }}
+        style={{ zIndex: 20, fontSize: "12px" }}
         className="fixed bottom-6 left-0 right-0 px-5 sm:px-8 md:px-10 flex items-center justify-between"
       >
         <span className="text-black pointer-events-none select-none">©Rico Lavender 2026. All Rights Reserved.</span>
